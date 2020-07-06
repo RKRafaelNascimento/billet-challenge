@@ -1,12 +1,14 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Post, Body } from '@nestjs/common';
 import { AppService } from '../services/app.service';
+import { BankingSecuritiesService } from 'src/services/BankingSecurities.service';
+import { IBarCodeInformation } from 'src/interfaces/IBarCodeInformation.interface';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(private readonly appService: BankingSecuritiesService) {}
 
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  @Post()
+  getBarCodeInformation(@Body('typedLine') typedLine: string): IBarCodeInformation {
+    return this.appService.getBarCodeInformation(typedLine);
   }
 }
