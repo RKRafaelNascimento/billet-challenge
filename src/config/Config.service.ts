@@ -27,6 +27,7 @@ export class ConfigService {
         .valid('development', 'production', 'test')
         .default('development'),
       SERVER_PORT: Joi.string().required(),
+      DATE_BASE: Joi.string().required(),
     });
 
     const { error, value: validatedEnvConfig } = envVarSchema.validate(
